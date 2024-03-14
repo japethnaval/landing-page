@@ -140,7 +140,6 @@ function App() {
         <div className="flex justify-center p-8">
           <span className="poppins-semibold text-5xl">
             Explore our Products
-            {JSON.stringify(cart)}
           </span>
         </div>
         {/* EXPLORE END */}

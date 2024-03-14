@@ -14,9 +14,6 @@ const Carousel = ({ images }) => {
       prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1,
     )
   }
-  const handleDotClick = (index: SetStateAction<number>) => {
-    setCurrentIndex(index)
-  }
 
   return (
     <div className="carousel">

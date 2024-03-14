@@ -1,10 +1,14 @@
 {
   "everyday-backpack": {
     "29743300771884": {
+      "id": "BAG_1",
       "gallery": [],
       "rating": "",
       "title": "EVERYDAY BACKPACK",
-      "price": "$229.95",
+      "price": {
+        "30L": "299.95",
+        "20L": "279.95"
+      },
       "sizes": [],
       "stocks": "",
       "description": ""
@@ -12,10 +16,14 @@
   },
   "travel-backpack": {
     "39599894724685": {
+      "id": "BAG_2",
       "gallery": [],
       "rating": "",
-      "title": "TRAVEL BACKPACK 30L",
-      "price": "$229.95",
+      "title": "TRAVEL BACKPACK",
+      "price": {
+        "30L": "259.95",
+        "20L": "239.95"
+      },
       "sizes": [],
       "stocks": "",
       "description": ""
@@ -23,10 +31,14 @@
   },
   "packing-cube": {
     "11531140038700": {
+      "id": "BAG_3",
       "gallery": [],
       "rating": "",
-      "title": "TRAVEL BACKPACK 30L",
-      "price": "$229.95",
+      "title": "PACKING CUBE",
+      "price": {
+        "30L": "279.95",
+        "20L": "239.95"
+      },
       "sizes": [],
       "stocks": "",
       "description": ""

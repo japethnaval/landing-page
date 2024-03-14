@@ -57,6 +57,7 @@ input:focus {
 
 .banner-text {
   position: absolute;
+  gap: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +71,7 @@ input:focus {
   width: 94px;
   height: 94px;
   border-radius: 50%;
+  cursor: pointer;
   border: 1px solid #d9d9d9;
 }
 
@@ -88,9 +90,11 @@ input:focus {
   border: 1px solid #d9d9d9;
   display: flex;
   justify-content: center;
+  cursor: pointer;
   align-items: center;
 }
-.product-size:hover {
+
+.selected {
   border: 1px solid #c70016;
 }
 
@@ -130,6 +134,7 @@ input:focus {
   border: 1px solid #909090;
 }
 .pagination {
+  cursor: pointer;
   justify-content: center;
   div:first-of-type {
     background-color: black;
@@ -177,4 +182,8 @@ input:focus {
 
 .pt-64 {
   padding-top: 64px;
+}
+
+.my-cart {
+  cursor: pointer;
 }

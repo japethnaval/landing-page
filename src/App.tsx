@@ -19,11 +19,16 @@ import { CiChat1 } from 'react-icons/ci'
 import Carousel from './components/carousel/carousel.component'
 import db from '../db.json'
 import { get } from 'lodash'
+import { useContext, useState } from 'react'
+import clsx from 'clsx'
+import Drawer from './components/drawer/drawer.component'
+import { CartContext } from './context/app.context'
+import { Button } from '@chakra-ui/react'
 
 function App() {
   const [searchParams] = useSearchParams()
-
-  console.log(searchParams.get('variant'))
+  const [size, setSize] = useState('30L')
+  const { cart, addToCart, onOpen } = useContext(CartContext)
 
   const variant = searchParams.get('variant')
   const productId = searchParams.get('productId')
@@ -43,6 +48,7 @@ function App() {
 
   return (
     <div>
+      <Drawer />
       {/* BANNER */}
       <div className="h-14 w-auto bg-black text-white text-center p-4">
         1% OF EVERY SALE GOES TO ENVIRONMENTAL NONPROFITS
@@ -82,7 +88,7 @@ function App() {
         <div className="flex gap-3">
           <img className="h-8" src={account_icon} />
           <img className="h-8" src={logout_icon} />
-          <img className="h-8" src={cart_icon} />
+          <img className="h-8 my-cart" src={cart_icon} onClick={onOpen} />
         </div>
       </div>
       {/* SEARCH END */}
@@ -119,12 +125,9 @@ function App() {
           <span className="poppins-light text-3xl">
             UNRIVALED ORGANIZATION, PROTECTION, AND ACCESS.
           </span>
-          <button
-            type="button"
-            className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-md text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-          >
+          <Button colorScheme="red" size={'lg'}>
             SHOP NOW
-          </button>
+          </Button>
         </div>
         <img
           width={'100%'}
@@ -137,6 +140,7 @@ function App() {
         <div className="flex justify-center p-8">
           <span className="poppins-semibold text-5xl">
             Explore our Products
+            {JSON.stringify(cart)}
           </span>
         </div>
         {/* EXPLORE END */}
@@ -181,10 +185,10 @@ function App() {
               </div>
               <div className="mt-24 flex flex-col gap-3 grow">
                 <span className="poppins-semibold text-4xl">
-                  {get(activeProduct, 'title')}
+                  {`${get(activeProduct, 'title')} ${size}`}
                 </span>
                 <span className="poppins-semibold text-3xl">
-                  {get(activeProduct, 'price')}
+                  {get(activeProduct, `price.${size}`)}
                 </span>
                 <div className="flex gap-1">
                   <span className="poppins-regular text-sm">Rating</span>
@@ -194,8 +198,24 @@ function App() {
                 <div>
                   <span>Size:</span>
                   <div className="flex gap-1">
-                    <span className="product-size">20L</span>
-                    <span className="product-size">30L</span>
+                    <span
+                      onClick={() => setSize('20L')}
+                      className={clsx(
+                        'product-size',
+                        size === '20L' && 'selected',
+                      )}
+                    >
+                      20L
+                    </span>
+                    <span
+                      onClick={() => setSize('30L')}
+                      className={clsx(
+                        'product-size',
+                        size === '30L' && 'selected',
+                      )}
+                    >
+                      30L
+                    </span>
                   </div>
                 </div>
                 <div>
@@ -214,12 +234,22 @@ function App() {
                   </div>
                 </div>
                 <div>
-                  <button
-                    type="button"
-                    className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-md text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                  <Button
+                    onClick={() =>
+                      addToCart({
+                        size,
+                        qty: 1,
+                        src: bag,
+                        productTitle: get(activeProduct, 'title'),
+                        id: get(activeProduct, 'id'),
+                        price: get(activeProduct, `price.${size}`),
+                      })
+                    }
+                    colorScheme="red"
+                    size={'md'}
                   >
                     Add to cart
-                  </button>
+                  </Button>
                 </div>
                 <div>
                   <div className="accordion">
@@ -336,9 +366,15 @@ function App() {
             {/* CUSTOMER REVIEW END*/}
             {/* PAGINATION */}
             <div className="flex gap-4 pagination py-12">
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
+              <Button colorScheme="gray" variant="outline">
+                1
+              </Button>
+              <Button colorScheme="gray" variant="outline">
+                2
+              </Button>
+              <Button colorScheme="gray" variant="outline">
+                3{' '}
+              </Button>
             </div>
             {/* PAGINATION END */}
           </>

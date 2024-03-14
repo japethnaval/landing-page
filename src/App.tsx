@@ -187,7 +187,7 @@ function App() {
                   {`${get(activeProduct, 'title')} ${size}`}
                 </span>
                 <span className="poppins-semibold text-3xl">
-                  {get(activeProduct, `price.${size}`)}
+                  ${get(activeProduct, `price.${size}`)}
                 </span>
                 <div className="flex gap-1">
                   <span className="poppins-regular text-sm">Rating</span>
@@ -237,7 +237,6 @@ function App() {
                     onClick={() =>
                       addToCart({
                         size,
-                        qty: 1,
                         src: bag,
                         productTitle: get(activeProduct, 'title'),
                         id: get(activeProduct, 'id'),

@@ -26,12 +26,17 @@ const useCartActions = () => {
 
   const addToCart = (product: ProductProps) => {
     if (cart.length >= 1) {
+      console.log('asdsa')
       const updatedCart = cart.map((p) => {
         if (p.id === product.id && p.size === product.size) {
+          console.log({
+            qty: Number(p.qty || 1) + 1,
+            subTotal: (Number(p.qty) + 1) * Number(p.price),
+          })
           return {
             ...p,
-            qty: Number(product.qty) + 1,
-            subTotal: (Number(product.qty) + 1) * Number(p.price),
+            qty: Number(p.qty || 1) + 1,
+            subTotal: (Number(p.qty || 1) + 1) * Number(p.price),
           }
         }
         return p

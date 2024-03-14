@@ -54,7 +54,7 @@ export const Drawer: FC<DrawerProps> = () => {
                       </Box>
                       <Box>
                         <span className="poppins-semibold text-sm">
-                          Price: {i.price} <br />
+                          Price: ${i.price} <br />
                         </span>
                       </Box>
                     </Stack>
@@ -78,7 +78,12 @@ export const Drawer: FC<DrawerProps> = () => {
             ))}
           </DrawerBody>
           <DrawerFooter>
-            Total: {cart.reduce((a, b) => Number(a) + Number(b.subTotal), 0)}
+            <span className="poppins-semibold text-sm">
+              Total: $
+              {cart
+                .reduce((a, b) => Number(a) + Number(b.subTotal), 0)
+                .toFixed(2)}
+            </span>
           </DrawerFooter>
         </DrawerContent>
       </ChakraDrawer>

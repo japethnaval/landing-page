@@ -1,5 +1,5 @@
 import { useDisclosure } from '@chakra-ui/react'
-import { ReactNode, createContext, useState } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 
 interface ProductProps {
   id: string
@@ -68,7 +68,7 @@ export const CartContext = createContext<CartContextProps>(
   {} as CartContextProps,
 )
 
-//todolist interface
+// todolist interface
 /**
  *
  * @typedef {Object} Todo
@@ -78,7 +78,7 @@ export const CartContext = createContext<CartContextProps>(
  *
  */
 
-export const CartContextProvider = ({ children }: { children: ReactNode }) => {
+export function CartContextProvider({ children }: { children: ReactNode }) {
   const value = useCartActions()
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

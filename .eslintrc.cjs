@@ -5,15 +5,25 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    'prettier'
+    'prettier',
   ],
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 'latest',
+  },
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['simple-import-sort', 'prefer-arrow'],
   rules: {
-    'react-refresh/only-export-components': [
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'prefer-arrow/prefer-arrow-functions': [
       'warn',
-      { allowConstantExport: true },
+      {
+        disallowPrototype: true,
+        singleReturnOnly: false,
+        classPropertiesAllowed: false,
+      },
     ],
   },
 }

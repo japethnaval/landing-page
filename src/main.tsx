@@ -1,10 +1,13 @@
 import './index.css'
+
+import { ChakraProvider } from '@chakra-ui/react'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+
 import App from './App.tsx'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { ChakraProvider } from '@chakra-ui/react'
 import { CartContextProvider } from './context/app.context.tsx'
+import theme from './theme/theme.ts'
 
 const router = createBrowserRouter([
   {
@@ -19,7 +22,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <RouterProvider router={router} />
     </ChakraProvider>
   </React.StrictMode>,

@@ -1,7 +1,8 @@
-import { SetStateAction, useState } from 'react'
 import './carousel.css'
 
-const Carousel = ({ images }) => {
+import {  useState } from 'react'
+
+function Carousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const handleNext = () => {

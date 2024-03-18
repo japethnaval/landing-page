@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Box, Flex, Hide, Link } from '@chakra-ui/react'
 import React from 'react'
 
@@ -22,11 +23,11 @@ export const NavLink: React.FC<NavLinkProps> = () => (
       >
         <Link
           fontSize={{
-            base: '12px',
             sm: '10px',
             md: '12px',
             lg: '14px',
           }}
+          href="#"
         >
           Bags
         </Link>
@@ -36,6 +37,7 @@ export const NavLink: React.FC<NavLinkProps> = () => (
             md: '12px',
             lg: '14px',
           }}
+          href="#"
         >
           Bags Accessories
         </Link>
@@ -45,6 +47,7 @@ export const NavLink: React.FC<NavLinkProps> = () => (
             md: '12px',
             lg: '14px',
           }}
+          href="#"
         >
           Mobile
         </Link>
@@ -54,6 +57,7 @@ export const NavLink: React.FC<NavLinkProps> = () => (
             md: '12px',
             lg: '14px',
           }}
+          href="#"
         >
           Camera Gear
         </Link>
@@ -63,6 +67,7 @@ export const NavLink: React.FC<NavLinkProps> = () => (
             md: '12px',
             lg: '14px',
           }}
+          href="#"
         >
           Tripods
         </Link>
@@ -72,6 +77,7 @@ export const NavLink: React.FC<NavLinkProps> = () => (
             md: '12px',
             lg: '14px',
           }}
+          href="#"
         >
           Gift Cards
         </Link>
@@ -81,6 +87,7 @@ export const NavLink: React.FC<NavLinkProps> = () => (
             md: '12px',
             lg: '14px',
           }}
+          href="#"
         >
           Last Call
         </Link>

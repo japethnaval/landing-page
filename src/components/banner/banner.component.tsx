@@ -10,7 +10,7 @@ import React from 'react'
 
 export interface BannerProps {}
 
-export const Banner: React.FC<BannerProps> = () => {
+export const Banner = () => {
   const size = useBreakpointValue({
     base: 'xs',
     sm: 'sm',

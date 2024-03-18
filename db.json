@@ -2,6 +2,7 @@
   "everyday-backpack": {
     "29743300771884": {
       "id": "BAG_1",
+      "thumbnail": "image-gallery/bag-1.jpg",
       "gallery": [],
       "rating": "",
       "title": "EVERYDAY BACKPACK",
@@ -17,6 +18,7 @@
   "travel-backpack": {
     "39599894724685": {
       "id": "BAG_2",
+      "thumbnail": "image-gallery/bag-2.jpg",
       "gallery": [],
       "rating": "",
       "title": "TRAVEL BACKPACK",
@@ -32,6 +34,7 @@
   "packing-cube": {
     "11531140038700": {
       "id": "BAG_3",
+      "thumbnail": "image-gallery/bag-3.jpg",
       "gallery": [],
       "rating": "",
       "title": "PACKING CUBE",

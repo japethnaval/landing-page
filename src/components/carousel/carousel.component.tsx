@@ -1,53 +1,128 @@
-import './carousel.css'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 
-import {  useState } from 'react'
+import { Box, Flex, Hide, IconButton, Image, Show } from '@chakra-ui/react'
+import { getImageUrl } from '@util/get-image-url'
+import { AnimatePresence, motion } from 'framer-motion'
+import useIndex from 'hooks/active-index'
+import { useRef } from 'react'
+import { IoChevronBackOutline, IoChevronForwardSharp } from 'react-icons/io5'
 
-function Carousel({ images }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + 1 === images.length ? 0 : prevIndex + 1,
-    )
-  }
-  const handlePrevious = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1,
-    )
-  }
+const Carousel = () => {
+  const itemsRef = useRef<any>([])
+  const images = new Array(6).fill(0)
+  const { handleNext, handlePrevious, onClick, currentIndex } = useIndex(
+    images,
+    itemsRef,
+  )
 
   return (
-    <div className="carousel">
-      <div>
-        <img key={currentIndex} src={images[currentIndex]} />
-      </div>
-      <div className="indicator">
-        <div className="carousel-btn left-thumb" onClick={handlePrevious}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="20"
-            viewBox="0 96 960 960"
-            width="20"
-          >
-            <path d="M400 976 0 576l400-400 56 57-343 343 343 343-56 57Z" />
-          </svg>
-        </div>
-        <div className="carousel-btn right-thumb" onClick={handleNext}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="20"
-            viewBox="0 96 960 960"
-            width="20"
-          >
-            <path d="m304 974-56-57 343-343-343-343 56-57 400 400-400 400Z" />
-          </svg>
-        </div>
+    <>
+      <Show below="sm">
+        <Flex gap="8px">
+          <Flex direction="column" gap="3px">
+            {images.map((u, i) => (
+              <Box
+                key={`${u}-${i.toString()}`}
+                tabIndex={-2}
+                // eslint-disable-next-line no-return-assign
+                ref={(element) => (itemsRef.current[i + 1] = element)}
+              >
+                <Image
+                  onClick={() => onClick(i)}
+                  maxH="20px"
+                  maxW="30px"
+                  cursor="pointer"
+                  objectFit="contain"
+                  src={getImageUrl(`image-gallery/bag-${i + 1}.jpg`)}
+                />
+              </Box>
+            ))}
+          </Flex>
 
-        {images.map((img) => (
-          <img className="thumbnail" src={img} />
-        ))}
-      </div>
-    </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.5 } }}
+              exit={{ opacity: 0 }}
+              key={currentIndex}
+            >
+              <Image
+                w="fill-available"
+                objectFit="contain"
+                src={getImageUrl(`image-gallery/bag-${currentIndex}.jpg`)}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </Flex>
+      </Show>
+
+      <Hide below="sm">
+        <Flex gap="8px" flexDir="column">
+          <AnimatePresence mode="wait">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.5 } }}
+              exit={{ opacity: 0 }}
+              key={currentIndex}
+            >
+              <Image
+                w="fill-available"
+                objectFit="contain"
+                src={getImageUrl(`image-gallery/bag-${currentIndex}.jpg`)}
+              />
+            </motion.div>
+          </AnimatePresence>
+          <Flex
+            alignItems="center"
+            justifyContent={{ base: 'flex-start', md: 'center' }}
+            gap="16px"
+          >
+            <IconButton
+              onClick={handlePrevious}
+              isRound
+              variant="solid"
+              colorScheme="gray"
+              aria-label="Done"
+              fontSize="20px"
+              icon={<IoChevronBackOutline />}
+            />
+            <Flex alignItems="center" gap="8px" overflowX="auto">
+              {images.map((u, i) => (
+                <Box
+                  key={u}
+                  tabIndex={-1}
+                  onClick={() => onClick(i)}
+                  // eslint-disable-next-line no-return-assign
+                  ref={(element) => (itemsRef.current[i + 1] = element)}
+                >
+                  <Image
+                    aria-selected={currentIndex === i + 1}
+                    _selected={{
+                      border: '1px solid red',
+                    }}
+                    cursor="pointer"
+                    objectFit="contain"
+                    h="80px"
+                    w="80px"
+                    src={getImageUrl(`image-gallery/bag-${i + 1}.jpg`)}
+                  />
+                </Box>
+              ))}
+            </Flex>
+            <IconButton
+              onClick={handleNext}
+              isRound
+              variant="solid"
+              colorScheme="gray"
+              aria-label="Done"
+              fontSize="20px"
+              icon={<IoChevronForwardSharp />}
+            />
+          </Flex>
+        </Flex>
+      </Hide>
+    </>
   )
 }
 

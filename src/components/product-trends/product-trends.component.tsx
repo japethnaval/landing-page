@@ -1,8 +1,7 @@
 import { Box, Flex, Image, SimpleGrid, Text } from '@chakra-ui/react'
+import { getImageUrl } from '@util/get-image-url'
 import { motion } from 'framer-motion'
 import React from 'react'
-
-import { getImageUrl } from '../../util/get-image-url'
 
 export interface ProductTrendsProps {}
 

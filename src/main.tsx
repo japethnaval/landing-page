@@ -1,21 +1,24 @@
 import './index.css'
 
 import { ChakraProvider } from '@chakra-ui/react'
+import { AppContextProvider } from '@context/app.context.tsx'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter,RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import App from './App.tsx'
-import { CartContextProvider } from './context/app.context.tsx'
+import { CartContextProvider } from './context/cart.context.tsx'
 import theme from './theme/theme.ts'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <CartContextProvider>
-        <App />
-      </CartContextProvider>
+      <AppContextProvider>
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
+      </AppContextProvider>
     ),
   },
 ])

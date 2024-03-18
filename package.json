@@ -2,13 +2,16 @@
   "name": "landing-page",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://japethnaval.github.io/landing-page/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format": "prettier --write ./src"
+    "format": "prettier --write ./src",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
@@ -45,6 +48,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-simple-import-sort": "^12.0.0",
+    "gh-pages": "^6.1.1",
     "prettier": "^3.2.5",
     "typescript": "^5.2.2",
     "vite": "^5.1.6",

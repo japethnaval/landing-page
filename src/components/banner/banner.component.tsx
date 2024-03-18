@@ -57,7 +57,7 @@ export const Banner = () => {
           fontWeight="bold"
           color="white"
         >
-          BAGS & ORGANIZERS
+          BAGS & ORGANIZERS123
         </Text>
         <Text
           fontSize={{

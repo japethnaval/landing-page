@@ -54,7 +54,7 @@ const useCartActions = () => {
   }
 
   const removeToCart = (product: ProductProps) => {
-    setCart(cart.filter((t) => t.id !== product.id))
+    setCart(cart.filter((t) => t.size !== product.size))
   }
 
   return {

@@ -25,6 +25,7 @@ export const Banner = () => {
         md: '16px',
       }}
       position="relative"
+      display='none'
     >
       <Image
         width="fill-available"
